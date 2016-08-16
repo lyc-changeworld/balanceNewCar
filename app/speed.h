@@ -9,7 +9,7 @@ extern uint32 My_Speed_Set;
 //速度控制
 #define Speed_MAX            My_Speed_Set          //速度脉冲量 周期：5ms记得的 学长的基本速度为14
 #define Speed_MIN            Speed_MAX*0.8
-#define  Angle_Max            20           //最大角度变化量
+#define  Angle_Max            16           //最大角度变化量
 #define  SA_Exchange          2000         //速度输出转换比例
 #define  SpeedIntegral_MAX    3500        //最大I积分量
 //#define Speed_Power_Max      6000        //控制速度输出的最大值
@@ -32,7 +32,9 @@ extern uint32 My_Speed_Set;
 
 //总电机输出
 #define ADJUST_POWER         9500       //总电机量PWM最大值 9500
-#define Direct_POWER         3400       //方向控量PWM最大值
+#define Angle_POWER          7000       //直立量PWM最大值
+
+#define Direct_POWER         3000       //方向控量PWM最大值
 #define LeftMotor_Dead        0        //左电机死区电机量//800
 #define RightMotor_Dead       0       //右电机死区电机量//800
 /************函数定义*********/

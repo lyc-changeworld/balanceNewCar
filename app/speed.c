@@ -65,8 +65,8 @@ FuzzyStruct Direct_P = { //模糊方向P
   { -10, -8, -5,  0,  5, 8, 10 },// { -10, -8, -5,  0,  5, 8, 10 },
   //  {  10, 11, 11, 12, 12,13, 13  },
   //  {  850, 880, 930, 955, 960,970, 985  },
-  //{  280, 295, 310, 340, 370,400, 430  },//华南赛使用
-  {  300, 310, 320, 330, 340,330, 320  },//小-大-小
+  {  280, 295, 310, 340, 370,400, 430  },//华南赛使用
+  //{  300, 310, 320, 330, 340,330, 320  },//小-大-小
   //  {  750, 760, 880, 945, 1000,1050, 1100  },
   {
     { 6, 6, 6, 5, 5, 5, 5, },   //   -3   
@@ -144,6 +144,13 @@ void angle_control(void) //5ms
 //  
   nD = -angle_D*(gyro_speed_y);
   nSpeed = nP + nD;
+  
+  //对直立量限幅
+  if(nSpeed < -Angle_POWER) 
+    nSpeed= -Angle_POWER;
+  else if(nSpeed > Angle_POWER)     
+    nSpeed= Angle_POWER;
+  
   AngleControlOut = nSpeed;
 }
 
@@ -167,22 +174,21 @@ void speed_control(void) //50ms
   {
     if(straightTime>200)
     {
-      Speed_Set = My_Speed_Set*0.77;
+      Speed_Set = My_Speed_Set*0.80;
     }else if(straightTime>150)
     {
-      Speed_Set = My_Speed_Set*0.82;
+      Speed_Set = My_Speed_Set*0.85;
     }else if(straightTime>100)
     {
-      Speed_Set = My_Speed_Set*0.87;
+      Speed_Set = My_Speed_Set*0.9;
     }else if(straightTime>50)
     {
-      Speed_Set = My_Speed_Set*0.92;
+      Speed_Set = My_Speed_Set*0.95;
     }
     else if(straightTime<10)
     {
-      Speed_Set = My_Speed_Set*1.15;
+      Speed_Set = 200;
     }
- 
     if(Speed_Set<160)
     {
       Speed_Set = 160;
@@ -192,52 +198,20 @@ void speed_control(void) //50ms
     // Speed_Set = My_Speed_Set;
     if(straightTime>10)
     {
-      if(My_Speed_Set>=160)//160
-      {
-          if(straightTime>200)
-         {
-           Speed_Set = My_Speed_Set*0.8;
-         }else if(straightTime>150)
-         {
-           Speed_Set = My_Speed_Set*0.85;
-         }else if(straightTime>100)
-         {
-           Speed_Set = My_Speed_Set*0.9;
-          }else if(straightTime>50)
-         {
-          Speed_Set = My_Speed_Set*0.95;
-         }
-       }
-     else 
-     {
-       Speed_Set = My_Speed_Set;
-     }
-     if(Speed_Set<150)
-     {
-       Speed_Set=150;
-     }
+      //PTC5_O=0;
+      Speed_Set = My_Speed_Set;
     }
     else
     {
-      if(My_Speed_Set>145)
-      {
-        Speed_Set = My_Speed_Set*1.2;
-      } else if(My_Speed_Set>135)
-      {
-        Speed_Set = My_Speed_Set*1.3;
-      } else if(My_Speed_Set>125)
-      {
-        Speed_Set = My_Speed_Set*1.4;
-      } else {
-        Speed_Set = My_Speed_Set*1.5;
-      }
+      //PTC5_O=1;
+      Speed_Set =200; //My_Speed_Set*1.3;
     }
     
   }
-  if(straightTime>10 && speed_avg / My_Speed_Set < 0.8)
+  /*if(straightTime>10 && speed_avg / My_Speed_Set < 0.8)
   {
     Speed_Set = My_Speed_Set;
-  } 
+  }*/ 
   
   /*if(runTime < speedChangeTime && speedChangeFlag == 1 &&  My_Speed_Set > 150)
   {
@@ -414,7 +388,7 @@ void DirectionSpeedOut(void)//5ms
   DirectSpeedControlOut1 = speed_control_new1;
   DirectSpeedControlOut2 = speed_control_new2;
   /*方向控制输出量限幅*/
-  /*if(DirectSpeedControlOut1 < -Direct_POWER) 
+  if(DirectSpeedControlOut1 < -Direct_POWER) 
     DirectSpeedControlOut1= -Direct_POWER;
   else if(DirectSpeedControlOut1 > Direct_POWER)     
     DirectSpeedControlOut1= Direct_POWER;
@@ -422,7 +396,7 @@ void DirectionSpeedOut(void)//5ms
   if(DirectSpeedControlOut2 < -Direct_POWER) 
     DirectSpeedControlOut2= -Direct_POWER;
   else if(DirectSpeedControlOut2> Direct_POWER)     
-    DirectSpeedControlOut2= Direct_POWER;*/
+    DirectSpeedControlOut2= Direct_POWER;
 }
 //---------------------角度+速度+方向总控制函数----------------------------------//
 //总控制函数
@@ -450,6 +424,7 @@ void Motor_Control(void)
 //    else
 //      f_gyro_D = - fabs(AngleControlOut+DirectSpeedControlOut1)*0.8;
 //  }
+  
   L_PowerValue =AngleControlOut+DirectSpeedControlOut1;//+f_gyro_D;//-DirectSpeedControlOut2-SpeedControlOut_L
   R_PowerValue =AngleControlOut+DirectSpeedControlOut2;//-f_gyro_D;//-DirectSpeedControlOut1-SpeedControlOut_R
   

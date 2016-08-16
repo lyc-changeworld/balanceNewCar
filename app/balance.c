@@ -123,12 +123,32 @@ void show_info(void)
     LCD_P6x8Str(90,0,"NO ");
   }
   
-  if(speedChangeFlag == 1)
+  /*if(speedChangeFlag == 1)
   {
     LCD_P6x8Str(90,7,"1");
   }else{
     LCD_P6x8Str(90,7,"0");
+  }*/
+  LCD_P6x8Str(1,0,"sp"); 
+  LCD_P6x8Str(1,1,"ADBasic:");
+  LCD_P6x8Str(1,2,"M:");
+  LCD_P6x8Str(1,3,"L_R:");
+  Show_Number(20,0,(int)speed_L);//显示平均速度
+  Show_Number(55,0,(int)speed_R);
+  //Show_Number(90,0,(int)(SA*100));
+  if(stopCarSetFlag == 1)
+  {
+    LCD_P6x8Str(90,0,"YES");
+  }else{
+    LCD_P6x8Str(90,0,"NO ");
   }
+  
+//  if(directChoose == 1)
+//  {
+//    LCD_P6x8Str(90,7,"1");
+//  }else{
+//    LCD_P6x8Str(90,7,"0");
+//  }
   Show_Number(55,1,(int)AD1Basic);
   Show_Number(90,1,(int)nowADBase);
   Show_Number(55,2,(int)AD_result[1]);
@@ -138,12 +158,12 @@ void show_info(void)
 
   
   LCD_P6x8Str(1,4,"spSet:");
-  Show_Number(55,4,(int)(Speed_Set));
-  //Show_Number(55,4,(int)(My_Speed_Set));
+  //Show_Number(55,4,(int)(Speed_Set));
+  Show_Number(55,4,(int)(My_Speed_Set));
   LCD_P6x8Str(1,5,"spDp:");
   Show_Number(55,5,(int)(SpeedAlone_P1));
   //Show_Number(90,5,(int)(SpeedAlone_D1));
-  Show_Number(90,5,(int)(350*dChange));
+  Show_Number(90,5,(int)(400*dChange));
   LCD_P6x8Str(1,6,"offset:");
   Show_Number(55,6,(int)(offset*100));
   Show_Number(90,6,(int)(first_offset[1]*100));

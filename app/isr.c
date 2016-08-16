@@ -84,7 +84,7 @@ void pit0_isr(void)
   }else{goDieFlag = 0;}
 
   
-  if(fabs(offset) < 0.20)//0.20
+  if(fabs(offset) < 0.2)//0.20
   {
     if(straightTime < 1000)
     {

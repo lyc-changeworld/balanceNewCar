@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR ANSI C/C++ Compiler V7.20.2.7424/W32 for ARM       16/Aug/2016  10:48:33
+// IAR ANSI C/C++ Compiler V7.20.2.7424/W32 for ARM       16/Aug/2016  15:26:20
 // Copyright 1999-2014 IAR Systems AB.
 //
 //    Cpu mode     =  thumb
@@ -369,7 +369,7 @@ pit0_isr:
         STR      R0,[R1, #+0]
 //   85 
 //   86   
-//   87   if(fabs(offset) < 0.20)//0.20
+//   87   if(fabs(offset) < 0.2)//0.20
 ??pit0_isr_12:
         LDR.N    R0,??DataTable1_13
         LDR      R0,[R0, #+0]

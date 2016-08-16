@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //
-// IAR ANSI C/C++ Compiler V7.20.2.7424/W32 for ARM       15/Aug/2016  21:16:00
+// IAR ANSI C/C++ Compiler V7.20.2.7424/W32 for ARM       16/Aug/2016  15:26:19
 // Copyright 1999-2014 IAR Systems AB.
 //
 //    Cpu mode     =  thumb
@@ -65,7 +65,6 @@
         EXTERN LPLD_MMA8451_Init
         EXTERN Show_Number
         EXTERN SpeedAlone_P1
-        EXTERN Speed_Set
         EXTERN __aeabi_f2iz
         EXTERN __aeabi_fadd
         EXTERN __aeabi_fmul
@@ -278,11 +277,11 @@ main:
         BL       show_info
 ??main_0:
         BL       keyScan
-        LDR.N    R1,??DataTable2_6
+        LDR.W    R1,??DataTable2_2
         STR      R0,[R1, #+0]
         CMP      R0,#+6
         BEQ.N    ??main_3
-        LDR.N    R0,??DataTable2_6
+        LDR.W    R0,??DataTable2_2
         LDR      R0,[R0, #+0]
         CMP      R0,#+1
         BEQ.N    ??main_4
@@ -295,60 +294,60 @@ main:
         BCC.N    ??main_8
         B.N      ??main_1
 ??main_4:
-        LDR.N    R0,??DataTable2_7
+        LDR.W    R0,??DataTable2_3
         LDR      R0,[R0, #+0]
-        LDR.N    R1,??DataTable2_8  ;; 0x40a00000
+        LDR.N    R1,??DataTable2_4  ;; 0x40a00000
         BL       __aeabi_fadd
-        LDR.N    R1,??DataTable2_7
+        LDR.N    R1,??DataTable2_3
         STR      R0,[R1, #+0]
         B.N      ??main_2
 ??main_6:
-        LDR.N    R0,??DataTable2_7
+        LDR.N    R0,??DataTable2_3
         LDR      R0,[R0, #+0]
         MOVS     R1,#-1073741824
         BL       __aeabi_fadd
-        LDR.N    R1,??DataTable2_7
+        LDR.N    R1,??DataTable2_3
         STR      R0,[R1, #+0]
         B.N      ??main_2
 ??main_5:
-        LDR.N    R0,??DataTable2_9
+        LDR.N    R0,??DataTable2_5
         LDRB     R0,[R0, #+0]
         CMP      R0,#+35
         BGE.N    ??main_9
-        LDR.N    R0,??DataTable2_9
+        LDR.N    R0,??DataTable2_5
         LDRB     R0,[R0, #+0]
         ADDS     R0,R0,#+1
-        LDR.N    R1,??DataTable2_9
+        LDR.N    R1,??DataTable2_5
         STRB     R0,[R1, #+0]
 ??main_9:
         B.N      ??main_2
 ??main_8:
-        LDR.N    R0,??DataTable2_10
+        LDR.N    R0,??DataTable2_6
         LDRB     R0,[R0, #+0]
         CMP      R0,#+1
         BNE.N    ??main_10
         MOVS     R0,#+0
-        LDR.N    R1,??DataTable2_10
+        LDR.N    R1,??DataTable2_6
         STRB     R0,[R1, #+0]
         B.N      ??main_11
 ??main_10:
         MOVS     R0,#+1
-        LDR.N    R1,??DataTable2_10
+        LDR.N    R1,??DataTable2_6
         STRB     R0,[R1, #+0]
 ??main_11:
         B.N      ??main_2
 ??main_7:
-        LDR.N    R0,??DataTable2_11
+        LDR.N    R0,??DataTable2_7
         LDRB     R0,[R0, #+0]
         CMP      R0,#+1
         BNE.N    ??main_12
         MOVS     R0,#+0
-        LDR.N    R1,??DataTable2_11
+        LDR.N    R1,??DataTable2_7
         STRB     R0,[R1, #+0]
         B.N      ??main_13
 ??main_12:
         MOVS     R0,#+1
-        LDR.N    R1,??DataTable2_11
+        LDR.N    R1,??DataTable2_7
         STRB     R0,[R1, #+0]
 ??main_13:
         B.N      ??main_2
@@ -367,22 +366,22 @@ main:
 //   99     cal_offset();
         BL       cal_offset
 //  100     if(stopCarSetFlag==1 && !PTE26_I && runTime > 1000) 
-        LDR.N    R0,??DataTable2_11
+        LDR.N    R0,??DataTable2_7
         LDRB     R0,[R0, #+0]
         CMP      R0,#+1
         BNE.N    ??main_14
-        LDR.N    R0,??DataTable2_12  ;; 0x43fe2268
+        LDR.N    R0,??DataTable2_8  ;; 0x43fe2268
         LDR      R0,[R0, #+0]
         CMP      R0,#+0
         BNE.N    ??main_14
-        LDR.N    R0,??DataTable2_13
+        LDR.N    R0,??DataTable2_9
         LDR      R0,[R0, #+0]
         CMP      R0,#+1000
         BLE.N    ??main_14
 //  101     {
 //  102       stopFlag=1;
         MOVS     R0,#+1
-        LDR.N    R1,??DataTable2_14
+        LDR.N    R1,??DataTable2_10
         STRB     R0,[R1, #+0]
         B.N      ??main_14
 //  103       //Motor_Stop();
@@ -400,27 +399,27 @@ main:
 show_info:
         PUSH     {R7,LR}
 //  112   LCD_P6x8Str(1,0,"sp"); 
-        ADR.N    R2,??DataTable2  ;; 0x73, 0x70, 0x00, 0x00
+        ADR.N    R2,??DataTable1  ;; 0x73, 0x70, 0x00, 0x00
         MOVS     R1,#+0
         MOVS     R0,#+1
         BL       LCD_P6x8Str
 //  113   LCD_P6x8Str(1,1,"ADBasic:");
-        LDR.N    R2,??DataTable2_15
+        LDR.N    R2,??DataTable2_11
         MOVS     R1,#+1
         MOVS     R0,#+1
         BL       LCD_P6x8Str
 //  114   LCD_P6x8Str(1,2,"M:");
-        ADR.N    R2,??DataTable2_1  ;; 0x4D, 0x3A, 0x00, 0x00
+        ADR.N    R2,??DataTable1_1  ;; 0x4D, 0x3A, 0x00, 0x00
         MOVS     R1,#+2
         MOVS     R0,#+1
         BL       LCD_P6x8Str
 //  115   LCD_P6x8Str(1,3,"L_R:");
-        LDR.N    R2,??DataTable2_16
+        LDR.N    R2,??DataTable2_12
         MOVS     R1,#+3
         MOVS     R0,#+1
         BL       LCD_P6x8Str
 //  116   Show_Number(20,0,(int)speed_L);//显示平均速度
-        LDR.N    R0,??DataTable2_17
+        LDR.N    R0,??DataTable2_13
         LDR      R0,[R0, #+0]
         BL       __aeabi_f2iz
         MOVS     R2,R0
@@ -428,7 +427,7 @@ show_info:
         MOVS     R0,#+20
         BL       Show_Number
 //  117   Show_Number(55,0,(int)speed_R);
-        LDR.N    R0,??DataTable2_18
+        LDR.N    R0,??DataTable2_14
         LDR      R0,[R0, #+0]
         BL       __aeabi_f2iz
         MOVS     R2,R0
@@ -437,13 +436,13 @@ show_info:
         BL       Show_Number
 //  118   //Show_Number(90,0,(int)(SA*100));
 //  119   if(stopCarSetFlag == 1)
-        LDR.N    R0,??DataTable2_11
+        LDR.N    R0,??DataTable2_7
         LDRB     R0,[R0, #+0]
         CMP      R0,#+1
         BNE.N    ??show_info_0
 //  120   {
 //  121     LCD_P6x8Str(90,0,"YES");
-        ADR.N    R2,??DataTable2_2  ;; "YES"
+        ADR.N    R2,??DataTable2  ;; "YES"
         MOVS     R1,#+0
         MOVS     R0,#+90
         BL       LCD_P6x8Str
@@ -451,169 +450,229 @@ show_info:
 //  122   }else{
 //  123     LCD_P6x8Str(90,0,"NO ");
 ??show_info_0:
-        ADR.N    R2,??DataTable2_3  ;; "NO "
+        ADR.N    R2,??DataTable2_1  ;; "NO "
         MOVS     R1,#+0
         MOVS     R0,#+90
         BL       LCD_P6x8Str
 //  124   }
 //  125   
-//  126   if(speedChangeFlag == 1)
+//  126   /*if(speedChangeFlag == 1)
+//  127   {
+//  128     LCD_P6x8Str(90,7,"1");
+//  129   }else{
+//  130     LCD_P6x8Str(90,7,"0");
+//  131   }*/
+//  132   LCD_P6x8Str(1,0,"sp"); 
 ??show_info_1:
-        LDR.N    R0,??DataTable2_10
+        ADR.N    R2,??DataTable1  ;; 0x73, 0x70, 0x00, 0x00
+        MOVS     R1,#+0
+        MOVS     R0,#+1
+        BL       LCD_P6x8Str
+//  133   LCD_P6x8Str(1,1,"ADBasic:");
+        LDR.N    R2,??DataTable2_11
+        MOVS     R1,#+1
+        MOVS     R0,#+1
+        BL       LCD_P6x8Str
+//  134   LCD_P6x8Str(1,2,"M:");
+        ADR.N    R2,??DataTable1_1  ;; 0x4D, 0x3A, 0x00, 0x00
+        MOVS     R1,#+2
+        MOVS     R0,#+1
+        BL       LCD_P6x8Str
+//  135   LCD_P6x8Str(1,3,"L_R:");
+        LDR.N    R2,??DataTable2_12
+        MOVS     R1,#+3
+        MOVS     R0,#+1
+        BL       LCD_P6x8Str
+//  136   Show_Number(20,0,(int)speed_L);//显示平均速度
+        LDR.N    R0,??DataTable2_13
+        LDR      R0,[R0, #+0]
+        BL       __aeabi_f2iz
+        MOVS     R2,R0
+        MOVS     R1,#+0
+        MOVS     R0,#+20
+        BL       Show_Number
+//  137   Show_Number(55,0,(int)speed_R);
+        LDR.N    R0,??DataTable2_14
+        LDR      R0,[R0, #+0]
+        BL       __aeabi_f2iz
+        MOVS     R2,R0
+        MOVS     R1,#+0
+        MOVS     R0,#+55
+        BL       Show_Number
+//  138   //Show_Number(90,0,(int)(SA*100));
+//  139   if(stopCarSetFlag == 1)
+        LDR.N    R0,??DataTable2_7
         LDRB     R0,[R0, #+0]
         CMP      R0,#+1
         BNE.N    ??show_info_2
-//  127   {
-//  128     LCD_P6x8Str(90,7,"1");
-        ADR.N    R2,??DataTable2_4  ;; "1"
-        MOVS     R1,#+7
+//  140   {
+//  141     LCD_P6x8Str(90,0,"YES");
+        ADR.N    R2,??DataTable2  ;; "YES"
+        MOVS     R1,#+0
         MOVS     R0,#+90
         BL       LCD_P6x8Str
         B.N      ??show_info_3
-//  129   }else{
-//  130     LCD_P6x8Str(90,7,"0");
+//  142   }else{
+//  143     LCD_P6x8Str(90,0,"NO ");
 ??show_info_2:
-        ADR.N    R2,??DataTable2_5  ;; "0"
-        MOVS     R1,#+7
+        ADR.N    R2,??DataTable2_1  ;; "NO "
+        MOVS     R1,#+0
         MOVS     R0,#+90
         BL       LCD_P6x8Str
-//  131   }
-//  132   Show_Number(55,1,(int)AD1Basic);
+//  144   }
+//  145   
+//  146 //  if(directChoose == 1)
+//  147 //  {
+//  148 //    LCD_P6x8Str(90,7,"1");
+//  149 //  }else{
+//  150 //    LCD_P6x8Str(90,7,"0");
+//  151 //  }
+//  152   Show_Number(55,1,(int)AD1Basic);
 ??show_info_3:
-        LDR.N    R0,??DataTable2_7
+        LDR.N    R0,??DataTable2_3
         LDR      R0,[R0, #+0]
         BL       __aeabi_f2iz
         MOVS     R2,R0
         MOVS     R1,#+1
         MOVS     R0,#+55
         BL       Show_Number
-//  133   Show_Number(90,1,(int)nowADBase);
-        LDR.N    R0,??DataTable2_19
+//  153   Show_Number(90,1,(int)nowADBase);
+        LDR.N    R0,??DataTable2_15
         LDR      R0,[R0, #+0]
         BL       __aeabi_f2iz
         MOVS     R2,R0
         MOVS     R1,#+1
         MOVS     R0,#+90
         BL       Show_Number
-//  134   Show_Number(55,2,(int)AD_result[1]);
-        LDR.N    R0,??DataTable2_20
+//  154   Show_Number(55,2,(int)AD_result[1]);
+        LDR.N    R0,??DataTable2_16
         LDR      R0,[R0, #+4]
         BL       __aeabi_f2iz
         MOVS     R2,R0
         MOVS     R1,#+2
         MOVS     R0,#+55
         BL       Show_Number
-//  135   
-//  136   Show_Number(27,3,(int)AD_result[0]);
-        LDR.N    R0,??DataTable2_20
+//  155   
+//  156   Show_Number(27,3,(int)AD_result[0]);
+        LDR.N    R0,??DataTable2_16
         LDR      R0,[R0, #+0]
         BL       __aeabi_f2iz
         MOVS     R2,R0
         MOVS     R1,#+3
         MOVS     R0,#+27
         BL       Show_Number
-//  137   Show_Number(90,3,(int)AD_result[2]);
-        LDR.N    R0,??DataTable2_20
+//  157   Show_Number(90,3,(int)AD_result[2]);
+        LDR.N    R0,??DataTable2_16
         LDR      R0,[R0, #+8]
         BL       __aeabi_f2iz
         MOVS     R2,R0
         MOVS     R1,#+3
         MOVS     R0,#+90
         BL       Show_Number
-//  138 
-//  139   
-//  140   LCD_P6x8Str(1,4,"spSet:");
-        LDR.N    R2,??DataTable2_21
+//  158 
+//  159   
+//  160   LCD_P6x8Str(1,4,"spSet:");
+        LDR.N    R2,??DataTable2_17
         MOVS     R1,#+4
         MOVS     R0,#+1
         BL       LCD_P6x8Str
-//  141   Show_Number(55,4,(int)(Speed_Set));
-        LDR.N    R0,??DataTable2_22
-        LDR      R0,[R0, #+0]
-        BL       __aeabi_f2iz
-        MOVS     R2,R0
+//  161   //Show_Number(55,4,(int)(Speed_Set));
+//  162   Show_Number(55,4,(int)(My_Speed_Set));
+        LDR.N    R0,??DataTable2_18
+        LDR      R2,[R0, #+0]
         MOVS     R1,#+4
         MOVS     R0,#+55
         BL       Show_Number
-//  142   //Show_Number(55,4,(int)(My_Speed_Set));
-//  143   LCD_P6x8Str(1,5,"spDp:");
-        LDR.N    R2,??DataTable2_23
+//  163   LCD_P6x8Str(1,5,"spDp:");
+        LDR.N    R2,??DataTable2_19
         MOVS     R1,#+5
         MOVS     R0,#+1
         BL       LCD_P6x8Str
-//  144   Show_Number(55,5,(int)(SpeedAlone_P1));
-        LDR.N    R0,??DataTable2_24
+//  164   Show_Number(55,5,(int)(SpeedAlone_P1));
+        LDR.N    R0,??DataTable2_20
         LDR      R0,[R0, #+0]
         BL       __aeabi_f2iz
         MOVS     R2,R0
         MOVS     R1,#+5
         MOVS     R0,#+55
         BL       Show_Number
-//  145   //Show_Number(90,5,(int)(SpeedAlone_D1));
-//  146   Show_Number(90,5,(int)(350*dChange));
-        LDR.N    R0,??DataTable2_9
+//  165   //Show_Number(90,5,(int)(SpeedAlone_D1));
+//  166   Show_Number(90,5,(int)(400*dChange));
+        LDR.N    R0,??DataTable2_5
         LDRB     R0,[R0, #+0]
-        MOV      R1,#+350
+        MOV      R1,#+400
         MUL      R2,R1,R0
         MOVS     R1,#+5
         MOVS     R0,#+90
         BL       Show_Number
-//  147   LCD_P6x8Str(1,6,"offset:");
-        LDR.N    R2,??DataTable2_25
+//  167   LCD_P6x8Str(1,6,"offset:");
+        LDR.N    R2,??DataTable2_21
         MOVS     R1,#+6
         MOVS     R0,#+1
         BL       LCD_P6x8Str
-//  148   Show_Number(55,6,(int)(offset*100));
-        LDR.N    R0,??DataTable2_26
+//  168   Show_Number(55,6,(int)(offset*100));
+        LDR.N    R0,??DataTable2_22
         LDR      R0,[R0, #+0]
-        LDR.N    R1,??DataTable2_27  ;; 0x42c80000
+        LDR.N    R1,??DataTable2_23  ;; 0x42c80000
         BL       __aeabi_fmul
         BL       __aeabi_f2iz
         MOVS     R2,R0
         MOVS     R1,#+6
         MOVS     R0,#+55
         BL       Show_Number
-//  149   Show_Number(90,6,(int)(first_offset[1]*100));
-        LDR.N    R0,??DataTable2_28
+//  169   Show_Number(90,6,(int)(first_offset[1]*100));
+        LDR.N    R0,??DataTable2_24
         LDR      R0,[R0, #+4]
-        LDR.N    R1,??DataTable2_27  ;; 0x42c80000
+        LDR.N    R1,??DataTable2_23  ;; 0x42c80000
         BL       __aeabi_fmul
         BL       __aeabi_f2iz
         MOVS     R2,R0
         MOVS     R1,#+6
         MOVS     R0,#+90
         BL       Show_Number
-//  150   LCD_P6x8Str(1,7,"angle:");
-        LDR.N    R2,??DataTable2_29
+//  170   LCD_P6x8Str(1,7,"angle:");
+        LDR.N    R2,??DataTable2_25
         MOVS     R1,#+7
         MOVS     R0,#+1
         BL       LCD_P6x8Str
-//  151   Show_Number(55,7,(int)(angle));
-        LDR.N    R0,??DataTable2_30
+//  171   Show_Number(55,7,(int)(angle));
+        LDR.N    R0,??DataTable2_26
         LDR      R0,[R0, #+0]
         BL       __aeabi_f2iz
         MOVS     R2,R0
         MOVS     R1,#+7
         MOVS     R0,#+55
         BL       Show_Number
-//  152 }
+//  172 }
         POP      {R0,PC}          ;; return
-//  153 
-//  154 //开机时显示
+
+        SECTION `.text`:CODE:NOROOT(2)
+        SECTION_TYPE SHT_PROGBITS, 0
+        DATA
+??DataTable1:
+        DC8      0x73, 0x70, 0x00, 0x00
+
+        SECTION `.text`:CODE:NOROOT(2)
+        SECTION_TYPE SHT_PROGBITS, 0
+        DATA
+??DataTable1_1:
+        DC8      0x4D, 0x3A, 0x00, 0x00
+//  173 
+//  174 //开机时显示
 
         SECTION `.text`:CODE:NOROOT(1)
         THUMB
-//  155 void DIP_Switch()
-//  156 {
+//  175 void DIP_Switch()
+//  176 {
 DIP_Switch:
         PUSH     {R7,LR}
-//  157   DIP_Switch_Value=Dip_Switch();//获取状态
+//  177   DIP_Switch_Value=Dip_Switch();//获取状态
         BL       Dip_Switch
-        LDR.N    R1,??DataTable2_31
+        LDR.N    R1,??DataTable2_27
         STR      R0,[R1, #+0]
-//  158   //判断，设置速度值
-//  159   switch(DIP_Switch_Value)
-        LDR.N    R0,??DataTable2_31
+//  178   //判断，设置速度值
+//  179   switch(DIP_Switch_Value)
+        LDR.N    R0,??DataTable2_27
         LDR      R0,[R0, #+0]
         CMP      R0,#+0
         BEQ.N    ??DIP_Switch_0
@@ -633,100 +692,100 @@ DIP_Switch:
         BEQ.N    ??DIP_Switch_9
         BCC.N    ??DIP_Switch_10
         B.N      ??DIP_Switch_11
-//  160   {
-//  161   case 0:My_Speed_Set=My_Speed_Min;break;//120
+//  180   {
+//  181   case 0:My_Speed_Set=My_Speed_Min;break;//120
 ??DIP_Switch_0:
         MOVS     R0,#+140
-        LDR.N    R1,??DataTable2_32
+        LDR.N    R1,??DataTable2_18
         STR      R0,[R1, #+0]
         B.N      ??DIP_Switch_12
-//  162   case 1:My_Speed_Set=My_Speed_Min+10;break;//130
+//  182   case 1:My_Speed_Set=My_Speed_Min+10;break;//130
 ??DIP_Switch_2:
         MOVS     R0,#+150
-        LDR.N    R1,??DataTable2_32
+        LDR.N    R1,??DataTable2_18
         STR      R0,[R1, #+0]
         B.N      ??DIP_Switch_12
-//  163   case 2:My_Speed_Set=My_Speed_Min+20;break;//140
+//  183   case 2:My_Speed_Set=My_Speed_Min+20;break;//140
 ??DIP_Switch_1:
         MOVS     R0,#+160
-        LDR.N    R1,??DataTable2_32
+        LDR.N    R1,??DataTable2_18
         STR      R0,[R1, #+0]
         B.N      ??DIP_Switch_12
-//  164   case 3:My_Speed_Set=My_Speed_Min+30;break;//150
+//  184   case 3:My_Speed_Set=My_Speed_Min+30;break;//150
 ??DIP_Switch_4:
         MOVS     R0,#+170
-        LDR.N    R1,??DataTable2_32
+        LDR.N    R1,??DataTable2_18
         STR      R0,[R1, #+0]
         B.N      ??DIP_Switch_12
-//  165   case 4:My_Speed_Set=My_Speed_Min+40;break;//160
+//  185   case 4:My_Speed_Set=My_Speed_Min+40;break;//160
 ??DIP_Switch_3:
         MOVS     R0,#+180
-        LDR.N    R1,??DataTable2_32
+        LDR.N    R1,??DataTable2_18
         STR      R0,[R1, #+0]
         B.N      ??DIP_Switch_12
-//  166   case 5:My_Speed_Set=My_Speed_Min+50;break;//170
+//  186   case 5:My_Speed_Set=My_Speed_Min+50;break;//170
 ??DIP_Switch_6:
         MOVS     R0,#+190
-        LDR.N    R1,??DataTable2_32
+        LDR.N    R1,??DataTable2_18
         STR      R0,[R1, #+0]
         B.N      ??DIP_Switch_12
-//  167   case 6:My_Speed_Set=My_Speed_Min+60;break;//180
+//  187   case 6:My_Speed_Set=My_Speed_Min+60;break;//180
 ??DIP_Switch_5:
         MOVS     R0,#+200
-        LDR.N    R1,??DataTable2_32
+        LDR.N    R1,??DataTable2_18
         STR      R0,[R1, #+0]
         B.N      ??DIP_Switch_12
-//  168   case 7:My_Speed_Set=My_Speed_Min+70;break;//180
+//  188   case 7:My_Speed_Set=My_Speed_Min+70;break;//180
 ??DIP_Switch_8:
         MOVS     R0,#+210
-        LDR.N    R1,??DataTable2_32
+        LDR.N    R1,??DataTable2_18
         STR      R0,[R1, #+0]
         B.N      ??DIP_Switch_12
-//  169   case 8:My_Speed_Set=My_Speed_Min+80;break;//180
+//  189   case 8:My_Speed_Set=My_Speed_Min+80;break;//180
 ??DIP_Switch_7:
         MOVS     R0,#+220
-        LDR.N    R1,??DataTable2_32
+        LDR.N    R1,??DataTable2_18
         STR      R0,[R1, #+0]
         B.N      ??DIP_Switch_12
-//  170   case 9:My_Speed_Set=My_Speed_Min+90;break;//180
+//  190   case 9:My_Speed_Set=My_Speed_Min+90;break;//180
 ??DIP_Switch_10:
         MOVS     R0,#+230
-        LDR.N    R1,??DataTable2_32
+        LDR.N    R1,??DataTable2_18
         STR      R0,[R1, #+0]
         B.N      ??DIP_Switch_12
-//  171   case 10:My_Speed_Set=My_Speed_Min+100;break;//180
+//  191   case 10:My_Speed_Set=My_Speed_Min+100;break;//180
 ??DIP_Switch_9:
         MOVS     R0,#+240
-        LDR.N    R1,??DataTable2_32
+        LDR.N    R1,??DataTable2_18
         STR      R0,[R1, #+0]
         B.N      ??DIP_Switch_12
-//  172   default:My_Speed_Set=My_Speed_Max;break;
+//  192   default:My_Speed_Set=My_Speed_Max;break;
 ??DIP_Switch_11:
         MOVS     R0,#+230
-        LDR.N    R1,??DataTable2_32
+        LDR.N    R1,??DataTable2_18
         STR      R0,[R1, #+0]
-//  173   }
-//  174   //限制速度
-//  175   if(My_Speed_Set>My_Speed_Max)
+//  193   }
+//  194   //限制速度
+//  195   if(My_Speed_Set>My_Speed_Max)
 ??DIP_Switch_12:
-        LDR.N    R0,??DataTable2_32
+        LDR.N    R0,??DataTable2_18
         LDR      R0,[R0, #+0]
         CMP      R0,#+231
         BCC.N    ??DIP_Switch_13
-//  176   {
-//  177     My_Speed_Set=My_Speed_Max;//180
+//  196   {
+//  197     My_Speed_Set=My_Speed_Max;//180
         MOVS     R0,#+230
-        LDR.N    R1,??DataTable2_32
+        LDR.N    R1,??DataTable2_18
         STR      R0,[R1, #+0]
-//  178   }
-//  179 //  if(My_Speed_Set!=DIP_Ago_Value)
-//  180 //  {
-//  181 //    LCD_CLS();//清屏
-//  182 //    LCD_P8x16Str(0,2,"MySpeed:");
-//  183 //    Show_Number(64,3,My_Speed_Set);
-//  184 //  }
-//  185 //  DIP_Ago_Value=My_Speed_Set;//更新历史值
-//  186 }
+//  198   }
+//  199 //  if(My_Speed_Set!=DIP_Ago_Value)
+//  200 //  {
+//  201 //    LCD_CLS();//清屏
+//  202 //    LCD_P8x16Str(0,2,"MySpeed:");
+//  203 //    Show_Number(64,3,My_Speed_Set);
+//  204 //  }
+//  205 //  DIP_Ago_Value=My_Speed_Set;//更新历史值
+//  206 }
 ??DIP_Switch_13:
         POP      {R0,PC}          ;; return
 
@@ -734,127 +793,127 @@ DIP_Switch:
         SECTION_TYPE SHT_PROGBITS, 0
         DATA
 ??DataTable2:
-        DC8      0x73, 0x70, 0x00, 0x00
-
-        SECTION `.text`:CODE:NOROOT(2)
-        SECTION_TYPE SHT_PROGBITS, 0
-        DATA
-??DataTable2_1:
-        DC8      0x4D, 0x3A, 0x00, 0x00
-
-        SECTION `.text`:CODE:NOROOT(2)
-        SECTION_TYPE SHT_PROGBITS, 0
-        DATA
-??DataTable2_2:
         DC8      "YES"
 
         SECTION `.text`:CODE:NOROOT(2)
         SECTION_TYPE SHT_PROGBITS, 0
         DATA
-??DataTable2_3:
+??DataTable2_1:
         DC8      "NO "
 
         SECTION `.text`:CODE:NOROOT(2)
         SECTION_TYPE SHT_PROGBITS, 0
         DATA
-??DataTable2_4:
-        DC8      "1",0x0,0x0
-
-        SECTION `.text`:CODE:NOROOT(2)
-        SECTION_TYPE SHT_PROGBITS, 0
-        DATA
-??DataTable2_5:
-        DC8      "0",0x0,0x0
-
-        SECTION `.text`:CODE:NOROOT(2)
-        SECTION_TYPE SHT_PROGBITS, 0
-        DATA
-??DataTable2_6:
+??DataTable2_2:
         DC32     keyState
 
         SECTION `.text`:CODE:NOROOT(2)
         SECTION_TYPE SHT_PROGBITS, 0
         DATA
-??DataTable2_7:
+??DataTable2_3:
         DC32     AD1Basic
 
         SECTION `.text`:CODE:NOROOT(2)
         SECTION_TYPE SHT_PROGBITS, 0
         DATA
-??DataTable2_8:
+??DataTable2_4:
         DC32     0x40a00000
 
         SECTION `.text`:CODE:NOROOT(2)
         SECTION_TYPE SHT_PROGBITS, 0
         DATA
-??DataTable2_9:
+??DataTable2_5:
         DC32     dChange
 
         SECTION `.text`:CODE:NOROOT(2)
         SECTION_TYPE SHT_PROGBITS, 0
         DATA
-??DataTable2_10:
+??DataTable2_6:
         DC32     speedChangeFlag
 
         SECTION `.text`:CODE:NOROOT(2)
         SECTION_TYPE SHT_PROGBITS, 0
         DATA
-??DataTable2_11:
+??DataTable2_7:
         DC32     stopCarSetFlag
 
         SECTION `.text`:CODE:NOROOT(2)
         SECTION_TYPE SHT_PROGBITS, 0
         DATA
-??DataTable2_12:
+??DataTable2_8:
         DC32     0x43fe2268
 
         SECTION `.text`:CODE:NOROOT(2)
         SECTION_TYPE SHT_PROGBITS, 0
         DATA
-??DataTable2_13:
+??DataTable2_9:
         DC32     runTime
 
         SECTION `.text`:CODE:NOROOT(2)
         SECTION_TYPE SHT_PROGBITS, 0
         DATA
-??DataTable2_14:
+??DataTable2_10:
         DC32     stopFlag
 
         SECTION `.text`:CODE:NOROOT(2)
         SECTION_TYPE SHT_PROGBITS, 0
         DATA
-??DataTable2_15:
+??DataTable2_11:
         DC32     ?_1
 
         SECTION `.text`:CODE:NOROOT(2)
         SECTION_TYPE SHT_PROGBITS, 0
         DATA
-??DataTable2_16:
+??DataTable2_12:
         DC32     ?_3
 
         SECTION `.text`:CODE:NOROOT(2)
         SECTION_TYPE SHT_PROGBITS, 0
         DATA
-??DataTable2_17:
+??DataTable2_13:
         DC32     speed_L
 
         SECTION `.text`:CODE:NOROOT(2)
         SECTION_TYPE SHT_PROGBITS, 0
         DATA
-??DataTable2_18:
+??DataTable2_14:
         DC32     speed_R
 
         SECTION `.text`:CODE:NOROOT(2)
         SECTION_TYPE SHT_PROGBITS, 0
         DATA
-??DataTable2_19:
+??DataTable2_15:
         DC32     nowADBase
 
         SECTION `.text`:CODE:NOROOT(2)
         SECTION_TYPE SHT_PROGBITS, 0
         DATA
-??DataTable2_20:
+??DataTable2_16:
         DC32     AD_result
+
+        SECTION `.text`:CODE:NOROOT(2)
+        SECTION_TYPE SHT_PROGBITS, 0
+        DATA
+??DataTable2_17:
+        DC32     ?_6
+
+        SECTION `.text`:CODE:NOROOT(2)
+        SECTION_TYPE SHT_PROGBITS, 0
+        DATA
+??DataTable2_18:
+        DC32     My_Speed_Set
+
+        SECTION `.text`:CODE:NOROOT(2)
+        SECTION_TYPE SHT_PROGBITS, 0
+        DATA
+??DataTable2_19:
+        DC32     ?_7
+
+        SECTION `.text`:CODE:NOROOT(2)
+        SECTION_TYPE SHT_PROGBITS, 0
+        DATA
+??DataTable2_20:
+        DC32     SpeedAlone_P1
 
         SECTION `.text`:CODE:NOROOT(2)
         SECTION_TYPE SHT_PROGBITS, 0
@@ -866,67 +925,37 @@ DIP_Switch:
         SECTION_TYPE SHT_PROGBITS, 0
         DATA
 ??DataTable2_22:
-        DC32     Speed_Set
-
-        SECTION `.text`:CODE:NOROOT(2)
-        SECTION_TYPE SHT_PROGBITS, 0
-        DATA
-??DataTable2_23:
-        DC32     ?_9
-
-        SECTION `.text`:CODE:NOROOT(2)
-        SECTION_TYPE SHT_PROGBITS, 0
-        DATA
-??DataTable2_24:
-        DC32     SpeedAlone_P1
-
-        SECTION `.text`:CODE:NOROOT(2)
-        SECTION_TYPE SHT_PROGBITS, 0
-        DATA
-??DataTable2_25:
-        DC32     ?_10
-
-        SECTION `.text`:CODE:NOROOT(2)
-        SECTION_TYPE SHT_PROGBITS, 0
-        DATA
-??DataTable2_26:
         DC32     offset
 
         SECTION `.text`:CODE:NOROOT(2)
         SECTION_TYPE SHT_PROGBITS, 0
         DATA
-??DataTable2_27:
+??DataTable2_23:
         DC32     0x42c80000
 
         SECTION `.text`:CODE:NOROOT(2)
         SECTION_TYPE SHT_PROGBITS, 0
         DATA
-??DataTable2_28:
+??DataTable2_24:
         DC32     first_offset
 
         SECTION `.text`:CODE:NOROOT(2)
         SECTION_TYPE SHT_PROGBITS, 0
         DATA
-??DataTable2_29:
-        DC32     ?_11
+??DataTable2_25:
+        DC32     ?_9
 
         SECTION `.text`:CODE:NOROOT(2)
         SECTION_TYPE SHT_PROGBITS, 0
         DATA
-??DataTable2_30:
+??DataTable2_26:
         DC32     angle
 
         SECTION `.text`:CODE:NOROOT(2)
         SECTION_TYPE SHT_PROGBITS, 0
         DATA
-??DataTable2_31:
+??DataTable2_27:
         DC32     DIP_Switch_Value
-
-        SECTION `.text`:CODE:NOROOT(2)
-        SECTION_TYPE SHT_PROGBITS, 0
-        DATA
-??DataTable2_32:
-        DC32     My_Speed_Set
 
         SECTION `.iar_vfe_header`:DATA:NOALLOC:NOROOT(2)
         SECTION_TYPE SHT_PROGBITS, 0
@@ -969,47 +998,39 @@ DIP_Switch:
         DATA
         DC8 "NO "
 
-        SECTION `.rodata`:CONST:REORDER:NOROOT(1)
-        DATA
-        DC8 "1"
-
-        SECTION `.rodata`:CONST:REORDER:NOROOT(1)
-        DATA
-        DC8 "0"
-
         SECTION `.rodata`:CONST:REORDER:NOROOT(2)
-?_8:
+?_6:
         DATA
         DC8 "spSet:"
         DC8 0
 
         SECTION `.rodata`:CONST:REORDER:NOROOT(2)
-?_9:
+?_7:
         DATA
         DC8 "spDp:"
         DC8 0, 0
 
         SECTION `.rodata`:CONST:REORDER:NOROOT(2)
-?_10:
+?_8:
         DATA
         DC8 "offset:"
 
         SECTION `.rodata`:CONST:REORDER:NOROOT(2)
-?_11:
+?_9:
         DATA
         DC8 "angle:"
         DC8 0
 
         END
 // 
-//  16 bytes in section .bss
-//  15 bytes in section .data
-//  72 bytes in section .rodata
-// 968 bytes in section .text
+//    16 bytes in section .bss
+//    15 bytes in section .data
+//    68 bytes in section .rodata
+// 1 032 bytes in section .text
 // 
-// 968 bytes of CODE  memory
-//  72 bytes of CONST memory
-//  31 bytes of DATA  memory
+// 1 032 bytes of CODE  memory
+//    68 bytes of CONST memory
+//    31 bytes of DATA  memory
 //
 //Errors: none
 //Warnings: 2
