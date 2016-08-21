@@ -347,7 +347,7 @@ void DirectionSpeedControl(void)//10ms
   Last_dir_err=New_dir_err;
   
   
-  avg_Speed=speed_avg/13;
+  avg_Speed=speed_avg/12;
   if(avg_Speed - 2 < 0)
     avg_Speed = 2;
   else if(avg_Speed - 12 > 0)

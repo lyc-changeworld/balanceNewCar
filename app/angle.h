@@ -10,7 +10,7 @@
 #define gyro_value_x  1.0/4// 左扭动为正，右扭动为负 
 #define gyro_time   0.005     //陀螺仪采样时间5ms
 #define a_time      0.0005    //加速度计采样时间0.5ms
-#define MMA8451_Y   -1//Y轴加速度计-平衡时角度偏量  
+#define MMA8451_Y   -2//Y轴加速度计-平衡时角度偏量  
 //#define GRAVITY_ADJUST_TIME_CONSTANT 0.18//取0.35时效果较好（陀螺仪还是会漂移，大概漂1度，可用）
 
 //--------------------函数定义----------------//
